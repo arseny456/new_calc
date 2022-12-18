@@ -45,8 +45,9 @@ b = 0
 #     else:
 #         print('something went wrong')
 def add_digit(digit):
-    text_space.insert(0, digit)
-
+    value = text_space.get() + str(digit)
+    text_space.delete(0,root.END)
+    text_space.insert(0,value)
 
 def clear():
     text_space.delete(0, END)
@@ -54,6 +55,11 @@ def clear():
 
 def clear_1_simbol():
     text_space.delete(text_space.index(END) - 1)
+
+
+def action(action):
+    if action == '+':
+        text_space.get()
 
 # def actions_for_2_digits(sign):
 #     if sign == "*":
@@ -69,7 +75,7 @@ root.geometry('300x350+500+200')
 s = ttk.Style()
 s.configure('my.TButton', font=('Helvetica', 16), background="#000000")
 
-text_space = Entry(text='0', font='Arial 24')
+text_space = Entry(text='0', font='Arial 24', justify=RIGHT)
 text_space.place(relx=0, rely=0,
                  relwidth=1, relheight=0.2)
 
@@ -90,7 +96,7 @@ BS_btn.place(relx=0.5, rely=0.0,
              relwidth=0.25, relheight=0.2)
 
 div_btn = ttk.Button(btn_frame, text='/', style='my.TButton',
-                     command=lambda: actions_for_2_digits('*'))
+                     command=lambda: add_digit('/'))
 div_btn.place(relx=0.75, rely=0.0,
               relwidth=0.25, relheight=0.2)
 
@@ -110,7 +116,7 @@ n9_btn.place(relx=0.5, rely=0.2,
              relwidth=0.25, relheight=0.2)
 
 mul_btn = ttk.Button(btn_frame, text='*', style='my.TButton',
-                     command=lambda: ation('*'))
+                     command=lambda: add_digit('*'))
 mul_btn.place(relx=0.75, rely=0.2,
               relwidth=0.25, relheight=0.2)
 
@@ -130,12 +136,12 @@ n6_btn.place(relx=0.5, rely=0.4,
              relwidth=0.25, relheight=0.2)
 
 plus_btn = ttk.Button(btn_frame, text='+', style='my.TButton',
-                      command=lambda: action('+'))
+                      command=lambda: add_digit('+'))
 plus_btn.place(relx=0.75, rely=0.4,
                relwidth=0.25, relheight=0.2)
 
 equal_btn = ttk.Button(btn_frame, text='=', style='my.TButton',
-                       command=lambda: action('='))
+                       command=lambda: add_digit('='))
 equal_btn.place(relx=0.75, rely=0.6,
                 relwidth=0.25, relheight=0.2)
 
@@ -143,12 +149,12 @@ equal_btn.place(relx=0.75, rely=0.6,
 
 
 n1_btn = ttk.Button(btn_frame, text='1', style='my.TButton',
-                    command=lambda: add_digit(4))
+                    command=lambda: add_digit(1))
 n1_btn.place(relx=0.0, rely=0.6,
              relwidth=0.25, relheight=0.2)
 
 n2_btn = ttk.Button(btn_frame, text='2', style='my.TButton',
-                    command=lambda: add_digit(5))
+                    command=lambda: add_digit(2))
 n2_btn.place(relx=0.25, rely=0.6,
              relwidth=0.25, relheight=0.2)
 
@@ -159,6 +165,24 @@ n3_btn.place(relx=0.5, rely=0.6,
 
 
 
+plus_minus_btn = ttk.Button(btn_frame, text='+-', style='my.TButton')
+plus_minus_btn.place(relx=0.0, rely=0.8,
+             relwidth=0.25, relheight=0.2)
+
+n0_btn = ttk.Button(btn_frame, text='0', style='my.TButton',
+                    command=lambda: add_digit(0))
+n0_btn.place(relx=0.25, rely=0.8,
+             relwidth=0.25, relheight=0.2)
+
+dote_btn = ttk.Button(btn_frame, text='.', style='my.TButton',
+                    command=lambda: add_digit('.'))
+dote_btn.place(relx=0.5, rely=0.8,
+             relwidth=0.25, relheight=0.2)
+
+none_btn = ttk.Button(btn_frame, text=' ', style='my.TButton',
+                    command=lambda: add_digit(' '))
+none_btn.place(relx=0.75, rely=0.8,
+             relwidth=0.25, relheight=0.2)
 
 
 
